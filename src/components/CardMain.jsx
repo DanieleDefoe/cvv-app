@@ -35,7 +35,6 @@ export default function CardMain({ description, experState, eduState }) {
     edus.push(node)
     i += 5
   }
-  console.log(experState)
   return (
     <div
       className="bg-gray-100 flex flex-col p-10 gap-8"

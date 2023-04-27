@@ -2,9 +2,11 @@ import CardHeader from './CardHeader'
 import CardMain from './CardMain'
 import CardAside from './CardAside'
 
-export default function Card({ states }) {
+import { forwardRef } from 'react'
+
+const Card = forwardRef(function Card({ states }, ref) {
   return (
-    <section className="w-full max-w-6xl grid shadow-2xl">
+    <section ref={ref} className="w-full max-w-6xl grid shadow-2xl">
       <CardHeader
         firstName={states.name}
         lastName={states.surname}
@@ -25,4 +27,6 @@ export default function Card({ states }) {
       />
     </section>
   )
-}
+})
+
+export default Card

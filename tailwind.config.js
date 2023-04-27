@@ -1,5 +1,5 @@
-module.exports = {
-  content: ['./src/**/*.{jsx}'],
+export default {
+  content: ['./index.html', './src/**/*.{jsx, js}'],
   theme: {
     extend: {
       backgroundImage: {

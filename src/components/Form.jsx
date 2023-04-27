@@ -4,18 +4,17 @@ import Button from './Button'
 
 import { experienceData, educationData } from '../utils/constants'
 
-import uniqid from 'uniqid'
-
 export default function Form({
   states,
   handleResetClick,
   handleChange,
   handleAddClick,
+  handlePDFclick,
 }) {
   return (
     <form
       name="cv"
-      className="w-full max-w-6xl bg-gray-100 rounded-xl shadow-lg p-7 font-sans flex flex-col gap-14"
+      className="w-full max-w-6xl bg-gray-200 rounded-xl shadow-lg p-7 font-sans flex flex-col gap-14"
     >
       <Fieldset key={'first'} title="personal information">
         <Input
@@ -112,7 +111,12 @@ export default function Form({
           handleClick={handleResetClick}
         />
 
-        <Button type="submit" text="generate PDF" bg="bg-green-800" />
+        <Button
+          type="button"
+          handleClick={handlePDFclick}
+          text="generate PDF"
+          bg="bg-green-800"
+        />
       </div>
     </form>
   )

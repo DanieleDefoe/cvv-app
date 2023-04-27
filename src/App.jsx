@@ -2,15 +2,18 @@ import Header from './components/Header'
 import Form from './components/Form'
 import Card from './components/Card'
 import Footer from './components/Footer'
-
-import { useState } from 'react'
-
-import { v4 } from 'uuid'
-
 import Input from './components/Input'
 import Button from './components/Button'
 
+import { useState, useRef } from 'react'
+import { useReactToPrint } from 'react-to-print'
+
+import { v4 } from 'uuid'
+
+import './main.css'
+
 function App() {
+  const componentPDF = useRef()
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [title, setTitle] = useState('')
@@ -126,6 +129,8 @@ function App() {
     description,
     setDescription,
     experiences,
+    setExperiences,
+    setEducation,
     education,
     experState,
     eduState,
@@ -141,6 +146,11 @@ function App() {
     setEducation([])
   }
 
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: 'Resume',
+  })
+
   return (
     <div className="min-h-screen bg-gray-300 px-8 box-border flex flex-col items-center gap-12">
       <Header />
@@ -149,8 +159,9 @@ function App() {
         handleResetClick={handleResetClick}
         handleChange={handleChange}
         handleAddClick={handleAddClick}
+        handlePDFclick={generatePDF}
       />
-      <Card states={states} />
+      <Card states={states} ref={componentPDF} />
       <Footer />
     </div>
   )
