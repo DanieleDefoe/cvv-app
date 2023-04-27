@@ -31,10 +31,19 @@ function App() {
     changeState(value)
 
     if (parentElement.classList.contains('experience')) {
-      console.log(id, experState)
-      // const idx = experState.findIndex((el) => el[0] === id)
-      // console.log(idx)
+      setExperState((state) => {
+        const newState = [...state]
+        const idx = newState.findIndex((el) => el[0] === id)
+        newState[idx][1] = value
+        return newState
+      })
     } else if (parentElement.classList.contains('education')) {
+      setEduState((state) => {
+        const newState = [...state]
+        const idx = newState.findIndex((el) => el[0] === id)
+        newState[idx][1] = value
+        return newState
+      })
     }
   }
 
@@ -55,9 +64,9 @@ function App() {
         ),
       )
       if (isExp) {
-        setExperState((state) => [...state, [identifier, 'exper data']])
+        setExperState((state) => [...state, [identifier, '']])
       } else {
-        setEduState((state) => [...state, [identifier, 'edu data']])
+        setEduState((state) => [...state, [identifier, '']])
       }
     }
     changeState((state) =>
@@ -76,20 +85,20 @@ function App() {
             )
             if (isExp) {
               setExperState((state) =>
-                state.length === 5
+                state.length === data.length
                   ? []
                   : [
-                      ...state.slice(0, experiences.length - 1),
-                      ...state.slice(experiences.length + data.length),
+                      ...state.slice(0, experState.length),
+                      ...state.slice(experState.length + data.length),
                     ],
               )
             } else {
               setEduState((state) =>
-                state.length === 6
+                state.length === data.length
                   ? []
                   : [
-                      ...state.slice(0, experiences.length),
-                      ...state.slice(experiences.length + data.length),
+                      ...state.slice(0, eduState.length),
+                      ...state.slice(eduState.length + data.length),
                     ],
               )
             }
@@ -97,11 +106,6 @@ function App() {
         />,
       ),
     )
-  }
-
-  function handleResetClick() {
-    setExperiences([])
-    setEducation([])
   }
 
   const states = {
@@ -122,11 +126,19 @@ function App() {
     description,
     setDescription,
     experiences,
-    setExperiences,
     education,
-    setEducation,
     experState,
     eduState,
+  }
+
+  function handleResetClick() {
+    for (const func in states) {
+      if (typeof states[func] === 'function') {
+        states[func]('')
+      }
+    }
+    setExperiences([])
+    setEducation([])
   }
 
   return (

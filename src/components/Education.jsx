@@ -1,7 +1,14 @@
-export default function Education({ name, city, degree, subject, from, to }) {
+export default function Education({
+  name = 'University name',
+  city = 'City',
+  degree = 'Degree',
+  subject = 'Subject',
+  from = 'From',
+  to = 'To',
+}) {
   return (
     <div className="flex gap-12">
-      <p className="text-xl font-semibold">
+      <p className="text-xl font-semibold w-44">
         {from} - {to}
       </p>
       <div className="flex flex-col gap-2">

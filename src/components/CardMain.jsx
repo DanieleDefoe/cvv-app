@@ -35,6 +35,7 @@ export default function CardMain({ description, experState, eduState }) {
     edus.push(node)
     i += 5
   }
+  console.log(experState)
   return (
     <div
       className="bg-gray-100 flex flex-col p-10 gap-8"
@@ -44,7 +45,9 @@ export default function CardMain({ description, experState, eduState }) {
         <h3 className="border-b text-blue-900 border-gray-300 text-2xl font-semibold capitalize">
           description
         </h3>
-        <div className="italic text-xl text-gray-800">{description || '-'}</div>
+        <div className="italic text-2xl text-gray-800">
+          {description || '-'}
+        </div>
       </div>
 
       <div className="flex flex-col gap-5 text-gray-800">
