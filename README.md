@@ -29,8 +29,5 @@
 ### Сборка проекта
 `npm run build`
 
-### Деплой проекта на Github-Pages
-`npm run deploy`
-
 ### Деплой: 
 [Try now, not later](https://lively-begonia-680727.netlify.app/)
